@@ -1,44 +1,31 @@
 //your JS code here. If required.
 
-        const bands = [
-            'The Plot in You',
-            'The Devil Wears Prada',
-            'Pierce the Veil',
-            'Norma Jean',
-            'The Bled',
-            'Say Anything',
-            'The Midway State',
-            'We Came as Romans',
-            'Counterparts',
-            'Oh, Sleeper',
-            'A Skylit Drive',
-            'Anywhere But Here',
-            'An Old Dog'
-        ];
+        const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 
+                       'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 
+                       'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
-        // Function to sort the bands
+        // Function to sort bands ignoring certain words
         function sortBands(bands) {
             const ignoreWords = ['a', 'an', 'the'];
 
             return bands.sort((a, b) => {
-                const strippedA = a.toLowerCase().replace(/^(a |an |the )/i, '');
-                const strippedB = b.toLowerCase().replace(/^(a |an |the )/i, '');
-
-                return strippedA.localeCompare(strippedB);
+                // Function to create a compare key by removing ignore words
+                const compareKey = (band) => {
+                    return band.toLowerCase().replace(/\b(?:a|an|the)\s+/g, '').trim();
+                };
+                return compareKey(a) > compareKey(b) ? 1 : -1;
             });
         }
 
-        // Display the sorted bands in the unordered list
-        function displaySortedBands() {
-            const sortedBands = sortBands(bands);
-            const bandList = document.getElementById('band');
+        // Get sorted bands
+        const sortedBands = sortBands(bands);
 
-            sortedBands.forEach(band => {
-                const li = document.createElement('li');
-                li.textContent = band;
-                bandList.appendChild(li);
-            });
-        }
+        // Get the unordered list element
+        const bandList = document.getElementById('band');
 
-        // Call the function to display sorted bands
-        displaySortedBands();
+        // Create list items and append them to the unordered list
+        sortedBands.forEach(band => {
+            const li = document.createElement('li');
+            li.textContent = band; // Set text content to band name
+            bandList.appendChild(li); // Append list item to the band list
+        });
