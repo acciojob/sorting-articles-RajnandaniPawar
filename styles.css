@@ -1,1 +1,21 @@
 /*  your css code here. If applicable */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0; /* Remove default padding */
+        }
+        li {
+            background: #fff; /* White background for list items */
+            margin: 5px 0; /* Spacing between items */
+            padding: 10px; /* Padding inside items */
+            border: 1px solid #ccc; /* Light border around items */
+            border-radius: 5px; /* Rounded corners */
+        }
