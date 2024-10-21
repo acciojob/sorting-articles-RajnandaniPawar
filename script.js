@@ -1,31 +1,44 @@
 //your JS code here. If required.
 
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil'
-                   'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 
-                   'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 
-                   'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+        const bands = [
+            'The Plot in You',
+            'The Devil Wears Prada',
+            'Pierce the Veil',
+            'Norma Jean',
+            'The Bled',
+            'Say Anything',
+            'The Midway State',
+            'We Came as Romans',
+            'Counterparts',
+            'Oh, Sleeper',
+            'A Skylit Drive',
+            'Anywhere But Here',
+            'An Old Dog'
+        ];
 
-    // Function to sort band names ignoring 'a', 'an', 'the'
-    function sortBands(bands) {
-        return bands.sort((a, b) => {
-            // Normalize both band names by removing the ignored words
-            const normalizedA = a.replace(/^(a|an|the)\s+/i, '').toLowerCase();
-            const normalizedB = b.replace(/^(a|an|the)\s+/i, '').toLowerCase();
-            
-            // Compare the normalized names
-            return normalizedA.localeCompare(normalizedB);
-        });
-    }
+        // Function to sort the bands
+        function sortBands(bands) {
+            const ignoreWords = ['a', 'an', 'the'];
 
-    // Sort the bands
-    const sortedBands = sortBands(bands);
+            return bands.sort((a, b) => {
+                const strippedA = a.toLowerCase().replace(/^(a |an |the )/i, '');
+                const strippedB = b.toLowerCase().replace(/^(a |an |the )/i, '');
 
-    // Get the unordered list element
-    const bandList = document.getElementById('band');
+                return strippedA.localeCompare(strippedB);
+            });
+        }
 
-    // Populate the unordered list with sorted bands
-    sortedBands.forEach(band => {
-        const listItem = document.createElement('li'); // Create a list item
-        listItem.textContent = band; // Set the text content to the band name
-        bandList.appendChild(listItem); // Append the list item to the unordered list
-    });
+        // Display the sorted bands in the unordered list
+        function displaySortedBands() {
+            const sortedBands = sortBands(bands);
+            const bandList = document.getElementById('band');
+
+            sortedBands.forEach(band => {
+                const li = document.createElement('li');
+                li.textContent = band;
+                bandList.appendChild(li);
+            });
+        }
+
+        // Call the function to display sorted bands
+        displaySortedBands();
